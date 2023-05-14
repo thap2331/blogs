@@ -1,14 +1,54 @@
 body {
-  display: flexbox;
-  max-width: 50%;
-  margin: 20px auto;
   background-color: #fafafa;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.navbar {
+  height: 50px;
+  background-color: rgb(172, 172, 172);
+  padding-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navbar > a {
+  padding-right: 40px;
+  text-decoration: none;
+  color: #1f2937;
+  font-size: 16px;
+}
+
+.article {
+  max-width: 50%;
+  margin: 100px auto 50px;
+}
+
+h1 {
+  font-size: 45px;
+  margin-bottom: 40px;
+}
+
+h2 {
+  margin-top: 90px;
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+p, li{
+  line-height: 1.5em;
 }
 
 .prebox {
-    background-color: #656669;
-    width: 80%;
-  }
+  width: 90%;
+  background-color: #d7d8d8;
+}
 
 .wrapcode {
   overflow-x: auto;
@@ -19,31 +59,78 @@ body {
   word-wrap: break-word;
   margin: auto;
   width: 90%;
-  color: #f3f3f7;
+  color: #1f2937;
 }
 
 .copytextbutton {
   float: right;
-  margin-top: 3px;
-  margin-right: 5px;
-
-  height: 20px;
-  font-size: 0.9rem;
-  padding: 0.15rem;
-  background-color: #828282;
-
-  border: ridge 1px #7b7b7c;
+  margin: 5px;
   border-radius: 5px;
-  text-shadow: #c4c4c4 0 0 2px;
-
+  padding: 5px;
+  font-size: 12px;
+  border: none;
+  background-color: #f5f5f5;
 }
 
 .copytextbutton:hover {
   cursor: pointer;
-  background-color: #bcbabb;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 5px #888888;
 }
 
 .imagesize {
   max-width: 100%;
   height: auto;
+}
+
+.tipsbox {
+  background-color: #d7d8d8;
+}
+
+.tipshead {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  height: 15px;
+  margin-top: 30px;
+}
+
+.tipscontent {
+  display: none;
+  padding: 10px 20px;
+}
+
+.caution {
+  color: #f4613a;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+footer {
+  background-color: #d7d8d8;
+  width: 100%;
+  position: absolute;
+  margin-top: 20px;
+}
+
+.footerlist {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 50px;
+}
+
+.footerhorizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.footerhorizontal > li {
+  margin-left: 10px;
+  margin-right: 10px;
 }

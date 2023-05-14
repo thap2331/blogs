@@ -10,95 +10,150 @@
 </head>
 <body>
 
-    <h1>Connect to a Docker database hosted in your home server from outside your home network</h1>
-    <p>In this article, I will show you how to connect to a locally hosted mysql docker database in your home over the internet.</p>
-    <h2>Requirements</h2>
-    <h4>Assumptions</h4>
-    <ol type="1">
-        <li>You know how to host and connect to a mysql docker database <strong>locally</strong> (within your home network)</li>
-        <li>You know how to do a <a href="https://en.wikipedia.org/wiki/Port_forwarding" target="_blank">port forwarding</a>.</li>
-    </ol>
+    <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Blogs</a>
+        <a href="#">About</a>
+    </nav>
 
-    <p style="font-family: monospace;"><i>Tips: Read more about the port forwarding on <a href="https://www.howtogeek.com/66214/how-to-forward-ports-on-your-router/" target="_blank">howtogeek.com</a>.</i></p>
-    
-    <h4>Operating system</h4>
-    <p>
-        Ubuntu 22.04 LTS. I am using this operating system. The concept below should be applicable to any other Linux system.
-    </p>
-    
-    <p style="font-family: monospace;"><i>Caution: This article is just for learning purposes. Do close the port once you are done experimenting.</i></p>
-    
-    <h2>Connect to the database over the internet</h2>
-
-    <ol>
-        <li><b>Step 1: Spin up a mysql docker database</b></li>
-            <p>Use <code>docker run</code> command to spin up a docker database. The <i>"-p"</i> option will bind the mysql container's default port, <b>3306</b>, to the port <b>23306</b> on your Docker host machine.</p> 
-            <!-- <code>docker run --name mysqltest -p 23306:3306 -e MYSQL_ROOT_PASSWORD=rootpass -d mysql:8</code>. -->
+    <div class="article">
+        <h1>Connect to a Docker database hosted in your home server from outside your home network</h1>
+        <h4>Last Updated: May 2023</h4>
+        <!-- <p>In this article, I will show you how to connect to a locally hosted mysql docker database in your home over the internet.</p> -->
+        <h2>Requirements</h2>
+        <h4>Assumptions</h4>
+        <ul>
+            <li>You know how to host and connect to a MySQL docker database <strong>locally</strong> (within your home network)</li>
+            <li>You know how to do a <a href="https://en.wikipedia.org/wiki/Port_forwarding" target="_blank">port forwarding</a>. Read more about the port forwarding on <a href="https://www.howtogeek.com/66214/how-to-forward-ports-on-your-router/" target="_blank">howtogeek.com</a>.</li>
+        </ul>
+        
+        <h4>Operating system</h4>
+        <p>
+            Ubuntu 22.04 LTS. I am using this operating system. The concept below should be applicable to any other Linux system.
+        </p>
+        
+        <p class="caution"><i>Caution: This article is just for learning purposes. Do close the port once you are done experimenting.</i></p>
+        
+        <div class="stepbox">
+            <h2>Step 1: Spin up a MySQL Docker database</h2>
+            <p>Use <code>docker run</code> command to spin up a Docker database. The <code>-p</code> option will bind the MySQL container's default port, <b>3306</b>, to the port <b>23306</b> on your Docker host machine.</p> 
             
             <pre class="prebox">
                 <button class="copytextbutton" onclick="copyCodetest(this, 'codechunk1')">Copy Code</button>
                 <p id="codechunk1" class="wrapcode">docker run --name mysqltest -p 23306:3306 -e MYSQL_ROOT_PASSWORD=rootpass -d mysql:8</p>
             </pre>
-            <p style="font-family: monospace;"><i>Tips: During port forwarding, you will use this port, 23306, as an internal port.</i></p>
+
+            <div class="tipsbox">
+                <div class="tipshead" onclick="expandTips(this)">
+                    <h4>Tips</h4>
+                    <p>+</p>
+                </div>
+                <div class="tipscontent">
+                    <p>During port forwarding, you will use this port, 23306, as an internal port.</p>
+                </div>
+            </div>
+        </div>
         
-        <br>
-        <li><b>Step 2: Connect to the database locally</b></li>
+        <div class="stepbox">
+            <h2>Step 2: Connect to the database locally</h2>
             <p>Use the code below to connect the database locally.</p>
             <pre class="prebox">
                 <button class="copytextbutton" onclick="copyCodetest(this, 'codechunk2')">Copy Code</button>
                 <p id="codechunk2" class="wrapcode">mysql -h 127.0.0.1 --port 23306 -uroot -prootpass -e 'show databases;'</p>
             </pre>
-            <p style="font-family: monospace;"><i>Tips: You will need to wait till the database is ready.</i></p>
 
-            <br>
-            <p>Example image below</p>
+            <p>Example:</p>
             <img src="/images/terminal_connect_to_mysql_blurred.jpg" class="imagesize">
 
-        <br>
-        <br>
-        <br>
-        <li><b>Step 3: Find your ip</b></li>
-            <p>Find your ip. You can use <a href="https://whatismyipaddress.com/" target="_blank">whatismyipaddress.com</a>. But my favorite is <code>curl ifconfig.me</code> in a command terminal.</p> 
+            <div class="tipsbox">
+                <div class="tipshead" onclick="expandTips(this)">
+                    <h4>Tips</h4>
+                    <p>+</p>
+                </div>
+                <div class="tipscontent">
+                    <p>You will need to wait till the database is ready.</p>
+                </div>
+            </div>
+        </div>
 
-            <p style="font-family: monospace;"><i>Tips: Learn to install ifconfig on Ubuntu/Debian from <a href="https://linuxize.com/post/ifconfig-command/" target="_blank">linuxize.com</a></i></p>
+        <div class="stepbox">
+            <h2>Step 3: Find your IP</h2>
+            <p>Find your IP address. You can use <a href="https://whatismyipaddress.com/" target="_blank">whatismyipaddress.com</a>, but my favorite is <code>curl ifconfig.me</code> in a command terminal.</p> 
 
-        <br>
-        <li><b>Step 4: Open a port</b></li>
+            <div class="tipsbox">
+                <div class="tipshead" onclick="expandTips(this)">
+                    <h4>Tips</h4>
+                    <p>+</p>
+                </div>
+                <div class="tipscontent">
+                    <p>Learn to install ifconfig on Ubuntu/Debian from <a href="https://linuxize.com/post/ifconfig-command/" target="_blank">linuxize.com</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="stepbox">
+            <h2>Step 4: Open a port</h2>
             <p>
                 Open a port (i.e., external port) in your router and map it to your internal port (your host machine, for us it's 23306). The external port is of your choice. You can keep both internal and external ports as 23306 to keep things easy for now.
             </p>
 
-            <p style="font-family: monospace;"><i>Tips: If you are using a spectrum wifi, use this <a href="https://www.spectrum.net/support/internet/advanced-wifi-advanced-settings" target="_blank">article from spectrum</a> to follow spectrum guidelines on how to do a port forwarding.</i></p>
+            <div class="tipsbox">
+                <div class="tipshead" onclick="expandTips(this)">
+                    <h4>Tips</h4>
+                    <p>+</p>
+                </div>
+                <div class="tipscontent">
+                    <p>If you are using a spectrum wifi, use this <a href="https://www.spectrum.net/support/internet/advanced-wifi-advanced-settings" target="_blank">article from spectrum</a> to follow spectrum guidelines on how to do a port forwarding.</p>
+                </div>
+            </div>
+        </div>
 
-        <br>
-        <li><b>Step 5: Connect database from the internet</b></li> 
+        <div class="stepbox">
+            <h2>Step 5: Connect database from the internet</h2>
             <p>
                 Well I hope this is why you are here. Now you want to access this database from outside your network. Two approaches are listed below:
             </p>
             <ol type="i">
                 <li>Option 1: Get on the network outside yours such as of your friends.</li>
                 <li>Option 2: Or, you can use a cloud shell on the <a href="https://console.cloud.google.com/getting-started?cloudshell=true" target="_blank">google cloud shell</a>. This guarantees that you are out on the internet.</li>
-
-                <p style="font-family: monospace;"><i>Tips: Learn lunch from <a href="https://cloud.google.com/shell/docs/launching-cloud-shell" target="_blank">google cloud shell</a> google documentation.</i></p>
-
-                <p>Connect database from the internet</p>
-
-                <pre class="prebox">
-                    <button class="copytextbutton" onclick="copyCodetest(this, 'codechunk3')">Copy Code</button>
-                    <p id="codechunk3" class="wrapcode">mysql -h youripaddress --port exposed-port-from-router -uroot -prootpass -e 'show databases;'</p>
-                </pre>
-                <br>
-                <p>Example image below</p>
-                <img src="/images/googlecloudshell_blurred.jpg" class="imagesize">
-                    
             </ol>
-    </ol>
 
-    <h3>Troubleshooting</h3>
-        <p>
-            If you try to locally connect to the docker database over the internet (using your ip address), and the connection fails, you might need to do <a href="https://en.wikipedia.org/wiki/Hole_punching_(networking)" target="_blank">hole punching</a>.
-        </p>
+            <p>Connect database from the internet</p>
 
+            <pre class="prebox">
+                <button class="copytextbutton" onclick="copyCodetest(this, 'codechunk3')">Copy Code</button>
+                <p id="codechunk3" class="wrapcode">mysql -h youripaddress --port exposed-port-from-router -uroot -prootpass -e 'show databases;'</p>
+            </pre>
+            <br>
+            <p>Example:</p>
+            <img src="/images/googlecloudshell_blurred.jpg" class="imagesize">
 
+            <div class="tipsbox">
+                <div class="tipshead" onclick="expandTips(this)">
+                    <h4>Tips</h4>
+                    <p>+</p>
+                </div>
+                <div class="tipscontent">
+                    <p>Learn to launch <a href="https://cloud.google.com/shell/docs/launching-cloud-shell" target="_blank">Google Cloud Shell</a>.</p>
+                </div>
+            </div>
+        </div>
+                   
+        <h2>Troubleshooting</h2>
+            <p>
+                If you try to locally connect to the docker database over the internet (using your ip address), and the connection fails, you might need to do <a href="https://en.wikipedia.org/wiki/Hole_punching_(networking)" target="_blank">hole punching</a>.
+            </p>
+    </div>
+    
+    <footer>
+        <ul class="footerlist">
+            <li>&copy; 2023 Suraj. All rights reserved.</li>
+            <div class="footerhorizontal">
+                <li>Privacy Policy</li>
+                <li>Terms of Service</li>
+                <li>Contact</li>
+            </div>
+        </ul>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,49 @@
+body {
+  display: flexbox;
+  max-width: 50%;
+  margin: 20px auto;
+  background-color: #fafafa;
+}
+
+.prebox {
+    background-color: #656669;
+    width: 80%;
+  }
+
+.wrapcode {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  margin: auto;
+  width: 90%;
+  color: #f3f3f7;
+}
+
+.copytextbutton {
+  float: right;
+  margin-top: 3px;
+  margin-right: 5px;
+
+  height: 20px;
+  font-size: 0.9rem;
+  padding: 0.15rem;
+  background-color: #828282;
+
+  border: ridge 1px #7b7b7c;
+  border-radius: 5px;
+  text-shadow: #c4c4c4 0 0 2px;
+
+}
+
+.copytextbutton:hover {
+  cursor: pointer;
+  background-color: #bcbabb;
+}
+
+.imagesize {
+  max-width: 100%;
+  height: auto;
+}

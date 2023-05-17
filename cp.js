@@ -33,4 +33,10 @@ function myFunction() {
   } else {
     navbar.classList.remove("sticky");
   }
-}
+};
+
+function darkMode(button) {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+  button.innerText = button.innerText === "Light" ? "Dark" : "Light";
+};
